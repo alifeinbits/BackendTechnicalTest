@@ -5,11 +5,9 @@ import com.compulynx.interview.model.Customer;
 import com.compulynx.interview.request.CustomerRegistrationRequest;
 import com.compulynx.interview.service.AccountService;
 import com.compulynx.interview.service.CustomerService;
+import lombok.Getter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -36,5 +34,10 @@ public class CustomerController {
         Customer registeredCustomer = customerService.register(customer);
         Account account = accountService.createAccount(registeredCustomer);
         return ResponseEntity.ok(account);
+    }
+    @GetMapping("/user")
+    public ResponseEntity<?> getUserProfile(@RequestParam String customerId) {
+        Customer registeredCustomer = customerService.findByCustomerId(customerId);
+        return ResponseEntity.ok(registeredCustomer);
     }
 }
