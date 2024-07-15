@@ -42,6 +42,9 @@ public class LoginController {
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(loginRequest.getCustomerId());
+        if (userDetails==null){
+            throw  new Exception("NOT FOUND");
+        }
 
         final String jwt = jwtUtil.generateToken(userDetails);
 
