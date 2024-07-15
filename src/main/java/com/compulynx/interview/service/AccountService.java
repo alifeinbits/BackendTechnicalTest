@@ -18,7 +18,7 @@ public class AccountService {
 
     public Account createAccount(Customer customer) {
         Account account = new Account();
-        account.setAccountId(UUID.randomUUID().toString());
+        account.setAccountId(customer.getCustomerId());
         account.setBalance(0.0);
         account.setCustomer(customer);
         return accountRepository.save(account);

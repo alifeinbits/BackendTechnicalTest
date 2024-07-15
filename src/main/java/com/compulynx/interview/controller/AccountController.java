@@ -33,8 +33,7 @@ public class AccountController {
     public ResponseEntity<?> getCustomerBalance(@RequestParam String customerId) {
         Customer customer = customerService.findByCustomerId(customerId);
         Account account = accountService.findByAccountId(customer.getCustomerId());
-        double balance = accountService.getBalance(account);
-        return ResponseEntity.ok(balance);
+        return ResponseEntity.ok(account);
     }
 
     @GetMapping("/mini-statement")
