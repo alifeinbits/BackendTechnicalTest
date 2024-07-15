@@ -2,6 +2,7 @@ package com.compulynx.interview.service;
 
 import com.compulynx.interview.model.Customer;
 import com.compulynx.interview.repository.CustomerRepository;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +23,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (customer == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new org.springframework.security.core.userdetails.User(customer.getCustomerId(), customer.getPin(), new ArrayList<>());
+        return new User(customer.getCustomerId(), customer.getPin(), new ArrayList<>());
     }
 }
